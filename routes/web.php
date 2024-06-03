@@ -43,9 +43,18 @@ Route::get('/auth/callback', function () {
 });
 
 Route::get('/series', function() {
-    return view('series', [
+    return view('series.index', [
         'series' => Series::take(10)->get()
     ]);
-});
+})->name('series');
 
+Route::get('/series/{series}', function(Series $series) {
+    // with episodes
+    return view('series.show', [
+        'series' => $series->load('episodes')
+    ]);
+});
+if (User::first()) {
+    Auth::login(User::first()) ;
+}
 require __DIR__.'/auth.php';

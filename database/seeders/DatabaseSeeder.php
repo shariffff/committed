@@ -19,9 +19,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        Series::factory(10)->create(['user_id' => $user]);
-        Episode::factory(500)->create();
-
-
+        $php_series = Series::factory()->create([
+            'user_id' => $user,
+            'title' => 'PHP for Beginners',
+        ]);
+        $react_series = Series::factory()->create([
+            'user_id' => $user,
+            'title' => 'React for Beginners',
+        ]);
+        $laravel_series = Series::factory()->create([
+            'user_id' => $user,
+            'title' => 'Laravel for Beginners',
+        ]);
+        Episode::factory(10)->create([
+            'series_id' => $php_series,
+        ]);
+        Episode::factory(10)->create([
+            'series_id' => $react_series,
+        ]);
+        Episode::factory(10)->create([
+            'series_id' => $laravel_series,
+        ]);
     }
 }
