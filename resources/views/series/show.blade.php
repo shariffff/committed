@@ -10,13 +10,17 @@
 
     <div class="py-12 container mx-auto">
 
-        <div class="grid grid-cols-3 gap-16" x-data="{ iframeUrl: '' }">
+        <div class="grid grid-cols-3 gap-16"
+            x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{$series->episodes[0]['url']}}' }">
             <ul role="list" class="bg-gray-800 divide-gray-700 divide-y text-white">
                 @foreach ($series->episodes as $item)
                 <li class="flex justify-between gap-x-6 p-5">
                     <div class="flex min-w-0 gap-x-4">
                         <div class="min-w-0 flex-auto">
-                            <button class=" text-sm font-semibold leading-6" x-on:click="iframeUrl = '{{$item->url}}'">
+                            <button class="text-left text-sm font-semibold leading-6 flex items-center gap-4"
+                                x-on:click="iframeUrl = 'https://www.youtube.com/embed/{{$item->url}}'">
+                                <img class="h-16 border rounded"
+                                    src="https://i.ytimg.com/vi/{{$item->url}}/mqdefault.jpg" alt="">
                                 {{$item->title}}
                             </button>
                         </div>

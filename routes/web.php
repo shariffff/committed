@@ -1,19 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Series;
+use App\Http\Controllers\SeriesController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => view('welcome'))->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [SeriesController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,18 +38,11 @@ Route::get('/auth/callback', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/series', function() {
-    return view('series.index', [
-        'series' => Series::take(10)->get()
-    ]);
-})->name('series');
+Route::get('/series', [SeriesController::class, 'index'])->name('series');
+Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
+Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
 
-Route::get('/series/{series}', function(Series $series) {
-    // with episodes
-    return view('series.show', [
-        'series' => $series->load('episodes')
-    ]);
-});
+
 if (User::first()) {
     Auth::login(User::first()) ;
 }
