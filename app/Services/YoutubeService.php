@@ -31,7 +31,6 @@ class YouTubeService
             ]);
 
             foreach ($response['items'] as $item) {
-                // dd($item);
                 $videos[] = [
                     'url' => $item['snippet']['resourceId']['videoId'],
                     'title' => $item['snippet']['title']

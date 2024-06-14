@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('author')->nullable();
-            $table->text('playlist_url')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->text('playlist_url');
             $table->text('progress')->nullable();
             $table->timestamps();
         });
