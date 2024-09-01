@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
+use App\Models\Episode;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,16 @@ Route::get('/auth/callback', function () {
 Route::get('/series', [SeriesController::class, 'index'])->name('series');
 Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
 Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
+
+Route::post('completed', function () {
+    $episode = Episode::find(request('completed'));
+
+        $episode->completed = true;
+        $episode->save();
+
+
+    return back();
+})->name('completed');
 
 
 if (User::first()) {
