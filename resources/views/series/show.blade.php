@@ -3,15 +3,32 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight text-white">
-            {{ $series->title }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl leading-tight text-white">
+                {{ $series->title }}
+            </h2>
+
+            <div>
+                <form method="POST" action="{{route('series.destroy')}}">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="series_id" value="{{ $series->id }}">
+                    <x-primary-button>Delete the series</x-primary-button>
+                </form>
+            </div>
+        </div>
+
     </x-slot>
 
     <div class="py-4 container mx-auto">
+        @php
 
+        $first_ep = $series->episodes[0] ?? [];
+        $first_ep_url = $first_ep['url'] ?? '';
+        $first_ep_id = $first_ep['id'] ?? '';
+        @endphp
         <div class="grid grid-cols-4 gap-4"
-            x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{$series->episodes[0]['url']}}', currentItem: {{$series->episodes[0]['id']}} }">
+            x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{ $first_ep_url }}', currentItem: '{{ $first_ep_id }}' }">
             <ul role="list"
                 class="rounded shadow bg-card-fill divide-y divide-white/10 h-screen overflow-y-auto no-scrollbar space-y-6">
                 @foreach ($series->episodes as $item)

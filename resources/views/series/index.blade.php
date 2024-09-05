@@ -86,7 +86,8 @@
                 </div>
 
                 @foreach ($series as $item)
-                <div class="border border-white/5 group relative rounded-lg shadow series text-white">
+                <div
+                    class="border border-white/5 flex group items-center justify-center min-h-24 relative rounded-lg series shadow text-white">
                     <div class="flex justify-between p-4">
                         <div>
                             <h3 class="text-sm">
