@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="">
+    <div>
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -27,9 +27,9 @@
                                         x-transition:leave="ease-in duration-200"
                                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        class="relative w-full py-6 bg-white px-7 sm:max-w-lg sm:rounded-lg">
+                                        class="relative w-full py-6 bg-black px-7 sm:max-w-lg sm:rounded-lg text-white">
                                         <div class="flex items-center justify-between pb-2">
-                                            <h3 class="text-lg font-semibold">Modal Title</h3>
+                                            <h3 class="text-lg font-semibold">Add a Youtube Playlist</h3>
                                             <button @click="modalOpen=false"
                                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50">
                                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -41,32 +41,19 @@
                                         </div>
                                         <div class="relative w-auto">
                                             <section>
-                                                <header>
-                                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                                        {{ __('Add a Youtube Playlist') }}
-                                                    </h2>
 
-                                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                                        {{ __("Update your account's profile information and email
-                                                        address.") }}
-                                                    </p>
-                                                </header>
 
                                                 <form method="post" action="{{ route('series.store') }}"
                                                     class="mt-6 space-y-6">
                                                     @csrf
-                                                    <div>
-                                                        <x-input-label for="title" :value="__('Title')" />
-                                                        <x-text-input id="title" name="title" type="text"
-                                                            class="mt-1 block w-full" :value="old('title')" required />
-                                                        <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                                                    </div>
+
 
                                                     <div>
                                                         <x-input-label for="playlist_url" :value="__('Playlist Url')" />
                                                         <x-text-input id="playlist_url" name="playlist_url" type="url"
-                                                            class="mt-1 block w-full" :value="old('playlist_url')"
-                                                            required autocomplete="username" />
+                                                            class="mt-1 block w-full text-black leading-10 px-2"
+                                                            :value="old('playlist_url')" required
+                                                            autocomplete="username" />
                                                         <x-input-error class="mt-2"
                                                             :messages="$errors->get('playlist_url')" />
                                                     </div>
@@ -93,7 +80,7 @@
                             <h3 class="text-sm">
                                 <a href="/series/{{$item->id}}">
                                     <span aria-hidden="true" class="absolute inset-0"></span>
-                                    {{$item->title}}
+                                    {{$item->title}} {{$item->author ? 'by ' . $item->author : ''}}
                                 </a>
                             </h3>
                         </div>

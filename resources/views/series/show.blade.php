@@ -1,11 +1,8 @@
 <x-app-layout>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl leading-tight text-white">
-                {{ $series->title }}
+                {{ $series->title }} {{$series->author ? 'by ' . $series->author : ''}}
             </h2>
 
             <div>

@@ -18,6 +18,46 @@ class YouTubeService
         $this->youtube = new Google_Service_YouTube($this->client);
     }
 
+    public function fetchChannelName($url)
+    {
+        $response = $this->youtube->channels->listChannels('snippet', [
+            'id' => $this->fetchChannelIdFromPlaylist($url),
+        ]);
+
+        if (!empty($response['items'])) {
+            return $response['items'][0]['snippet']['title'];
+        }
+
+        return null;
+    }
+
+    public function fetchChannelIdFromPlaylist($url)
+{
+    $response = $this->youtube->playlists->listPlaylists('snippet', [
+        'id' => $this->parsePlaylistId($url),
+    ]);
+
+    if (!empty($response['items'])) {
+        return $response['items'][0]['snippet']['channelId'];
+    }
+
+    return null;
+}
+
+
+    public function fetchPlaylistTitle($url)
+    {
+        $response = $this->youtube->playlists->listPlaylists('snippet', [
+            'id' => $this->parsePlaylistId($url),
+        ]);
+
+        if (!empty($response['items'])) {
+            return $response['items'][0]['snippet']['title'];
+        }
+
+        return null;
+    }
+
     public function fetchAllVideosFromPlaylist($url)
     {
         $nextPageToken = '';

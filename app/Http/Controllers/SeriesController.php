@@ -24,19 +24,23 @@ class SeriesController extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'title' => 'required',
             'playlist_url' => 'required',
         ]);
 
         $series = Series::create([
             'user_id' => auth()->id(),
-            'title' => request('title'),
+            'title' => '',
             'playlist_url' => request('playlist_url'),
         ]);
 
         $youtubeService = new YouTubeService();
         $episodes = $youtubeService->fetchAllVideosFromPlaylist($series->playlist_url);
         $series->episodes()->createMany($episodes);
+        $series->title = $youtubeService->fetchPlaylistTitle($series->playlist_url);
+
+        $series->author = $youtubeService->fetchChannelName($series->playlist_url);
+
+        $series->save();
 
         return redirect()->back();
     }
