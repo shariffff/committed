@@ -73,19 +73,27 @@
                 </div>
 
                 @foreach ($series as $item)
-                <div
-                    class="border border-white/5 flex group items-center justify-center min-h-24 relative rounded-lg series shadow text-white">
-                    <div class="flex justify-between p-4">
-                        <div>
-                            <h3 class="text-sm">
-                                <a href="/series/{{$item->id}}">
-                                    <span aria-hidden="true" class="absolute inset-0"></span>
-                                    {{$item->title}} {{$item->author ? 'by ' . $item->author : ''}}
-                                </a>
-                            </h3>
+                <div class="w-full max-w-[360px] bg-black shadow-lg rounded-lg overflow-hidden">
+                    <a class="item-link" href="/series/{{$item->id}}"></a>
+
+                    <div class="relative">
+                        <img style="    filter: invert(1);" src="https://g-szqljk52-sk.vusercontent.net/placeholder.svg"
+                            alt="Video thumbnail" class="w-full h-[200px] object-cover" />
+
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-semibold line-clamp-2 mb-1 text-gray-400">
+                            <a href="/series/{{$item->id}}">{{$item->title}}</a>
+                        </h3>
+                        <p class="text-sm text-gray-500">{{$item->author ?? ''}}</p>
+                        <div class="text-sm text-gray-500 mt-1">
+                            <span>12 vidoes</span>
+                            <span class="mx-1">•</span>
+                            <span>Progress 10%</span>
                         </div>
                     </div>
                 </div>
+
                 @endforeach
             </div>
         </div>
