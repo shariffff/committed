@@ -1,0 +1,24 @@
+name: Deploy to Production
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+          if_key_exists: replace # replace / ignore / fail; optional (defaults to fail)
+
+      - name: Deploy with rsync
+        run: rsync -az --exclude wp-content/object-cache.php --exclude wp-content/mu-plugins ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:site/public_html/
+          
+      - name: Clear Static Cache
+        run: echo 'wp hosting clearcache static' | ssh -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
