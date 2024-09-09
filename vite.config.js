@@ -7,8 +7,6 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-               'resources/views/**/*.blade.php',
-               'resources/views/**/**/*.blade.php'
             ],
             refresh: true,
         }),
