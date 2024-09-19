@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center text-white font-bold">
                     <a href="{{ route('dashboard') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Committed') }}
                     </a>
                 </div>
 

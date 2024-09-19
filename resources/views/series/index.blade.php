@@ -1,8 +1,6 @@
 <x-app-layout>
-
     <div>
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-
             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                 <div class="gradient-border">
                     <div style="background: #0c0c1d"
@@ -41,13 +39,9 @@
                                         </div>
                                         <div class="relative w-auto">
                                             <section>
-
-
                                                 <form method="post" action="{{ route('series.store') }}"
                                                     class="mt-6 space-y-6">
                                                     @csrf
-
-
                                                     <div>
                                                         <x-input-label for="playlist_url" :value="__('Playlist Url')" />
                                                         <x-text-input id="playlist_url" name="playlist_url" type="url"
@@ -73,12 +67,11 @@
                 </div>
 
                 @foreach ($series as $item)
-                <div class="w-full max-w-[360px] bg-black shadow-lg rounded-lg overflow-hidden">
-                    <a class="item-link" href="/series/{{$item->id}}"></a>
+                <div class="w-full max-w-[360px] bg-black shadow-lg rounded-lg overflow-hidden relative">
+                    <a class="item-link absolute h-full item-link w-full z-10" href="/series/{{$item->id}}"></a>
 
                     <div class="relative">
-                        <img style=""
-                            src="{{$item->thumbnail ?? 'https://g-szqljk52-sk.vusercontent.net/placeholder.svg'}}"
+                        <img src="{{$item->thumbnail ?? 'https://g-szqljk52-sk.vusercontent.net/placeholder.svg'}}"
                             alt="Video thumbnail" class="w-full h-[200px] object-cover" />
 
                     </div>
@@ -88,9 +81,9 @@
                         </h3>
                         <p class="text-sm text-gray-500">{{$item->author ?? ''}}</p>
                         <div class="text-sm text-gray-500 mt-1">
-                            <span>12 vidoes</span>
-                            <span class="mx-1">•</span>
-                            <span>Progress 10%</span>
+                            {{-- <span>12 vidoes</span> --}}
+                            {{-- <span class="mx-1">•</span> --}}
+                            {{-- <span>Progress 10%</span> --}}
                         </div>
                     </div>
                 </div>

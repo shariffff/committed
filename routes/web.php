@@ -10,7 +10,22 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', fn() => view('welcome'))->name('home');
 
-Route::get('/dashboard', [SeriesController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [SeriesController::class, 'index'])->name('dashboard');
+    Route::get('/series', [SeriesController::class, 'index'])->name('series');
+    Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
+    Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
+    Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
+
+    Route::post('completed', function () {
+        $episode = Episode::find(request('completed'));
+            $episode->completed = true;
+            $episode->save();
+        return back();
+    })->name('completed');
+
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,23 +54,4 @@ Route::get('/auth/callback', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/series', [SeriesController::class, 'index'])->name('series');
-Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
-Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
-Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
-
-Route::post('completed', function () {
-    $episode = Episode::find(request('completed'));
-
-        $episode->completed = true;
-        $episode->save();
-
-
-    return back();
-})->name('completed');
-
-
-if (User::first()) {
-    Auth::login(User::first()) ;
-}
 require __DIR__.'/auth.php';
