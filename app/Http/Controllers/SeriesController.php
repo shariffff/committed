@@ -26,6 +26,7 @@ class SeriesController extends Controller
         $request->validate([
             'playlist_url' => 'required',
         ]);
+        //Todo: Validate the playlist_url here
 
         $series = Series::create([
             'user_id' => auth()->id(),
@@ -33,12 +34,12 @@ class SeriesController extends Controller
             'playlist_url' => request('playlist_url'),
         ]);
 
-        $youtubeService = new YouTubeService();
-        $episodes = $youtubeService->fetchAllVideosFromPlaylist($series->playlist_url);
+        $youtubeService = new YouTubeService( playListURL: request('playlist_url'));
+        $episodes = $youtubeService->fetchAllVideosFromPlaylist();
         $series->episodes()->createMany($episodes);
-        $series->title = $youtubeService->fetchPlaylistTitle($series->playlist_url);
+        $series->title = $youtubeService->fetchPlaylistTitle();
 
-        $series->author = $youtubeService->fetchChannelName($series->playlist_url);
+        $series->author = $youtubeService->fetchChannelName();
 
         $series->save();
 

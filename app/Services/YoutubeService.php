@@ -9,19 +9,21 @@ class YouTubeService
 {
     protected $client;
     protected $youtube;
+    protected $playListURL;
 
-    public function __construct()
+    public function __construct($playListURL)
     {
         $this->client = new Google_Client();
         $this->client->setDeveloperKey(env('YOUTUBE_API_KEY'));
+        $this->playListURL = $playListURL;
 
         $this->youtube = new Google_Service_YouTube($this->client);
     }
 
-    public function fetchChannelName($url)
+    public function fetchChannelName()
     {
         $response = $this->youtube->channels->listChannels('snippet', [
-            'id' => $this->fetchChannelIdFromPlaylist($url),
+            'id' => $this->fetchChannelIdFromPlaylist(),
         ]);
 
         if (!empty($response['items'])) {
@@ -31,10 +33,10 @@ class YouTubeService
         return null;
     }
 
-    public function fetchChannelIdFromPlaylist($url)
+    public function fetchChannelIdFromPlaylist()
 {
     $response = $this->youtube->playlists->listPlaylists('snippet', [
-        'id' => $this->parsePlaylistId($url),
+        'id' => $this->parsePlaylistId($this->playListURL),
     ]);
 
     if (!empty($response['items'])) {
@@ -45,10 +47,10 @@ class YouTubeService
 }
 
 
-    public function fetchPlaylistTitle($url)
+    public function fetchPlaylistTitle()
     {
         $response = $this->youtube->playlists->listPlaylists('snippet', [
-            'id' => $this->parsePlaylistId($url),
+            'id' => $this->parsePlaylistId($this->playListURL),
         ]);
 
         if (!empty($response['items'])) {
@@ -58,14 +60,14 @@ class YouTubeService
         return null;
     }
 
-    public function fetchAllVideosFromPlaylist($url)
+    public function fetchAllVideosFromPlaylist()
     {
         $nextPageToken = '';
         $videos = [];
 
         do {
             $response = $this->youtube->playlistItems->listPlaylistItems('snippet', [
-                'playlistId' => $this->parsePlaylistId($url),
+                'playlistId' => $this->parsePlaylistId($this->playListURL),
                 'maxResults' => 50,
                 'pageToken' => $nextPageToken,
             ]);
