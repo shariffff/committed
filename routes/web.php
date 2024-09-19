@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
 use App\Models\Episode;
@@ -17,12 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
     Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
 
-    Route::post('completed', function () {
-        $episode = Episode::find(request('completed'));
-            $episode->completed = true;
-            $episode->save();
-        return back();
-    })->name('completed');
+    Route::post('episode-completed', EpisodeController::class)->name('completed');
 
 });
 

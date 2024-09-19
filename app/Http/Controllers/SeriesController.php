@@ -6,16 +6,21 @@ use App\Models\Series;
 use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class SeriesController extends Controller
 {
     public function index(){
         return view('series.index', [
-            'series' => Series::take(10)->get()
+            'series' => Series::where('user_id', auth()->id())
+                        ->take(10)
+                        ->get()
         ]);
     }
 
     public function show(Series $series){
+        Gate::authorize('view', $series);
+
         return view('series.show', [
             'series' => $series->load('episodes')
         ]);
@@ -52,13 +57,11 @@ class SeriesController extends Controller
         $request->validate([
             'series_id' => 'required'
         ]);
-
         $series = Series::findOrFail($request->series_id);
 
-        if ($series->user_id === Auth::id()) {
-            $series->delete();
-        }
+        Gate::authorize('delete', $series);
 
+        $series->delete();
         return redirect(route('series'));
     }
 }
