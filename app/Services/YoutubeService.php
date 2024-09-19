@@ -5,7 +5,7 @@ namespace App\Services;
 use Google\Client as Google_Client;
 use Google\Service\YouTube as Google_Service_YouTube;
 
-class YouTubeService
+class YoutubeService
 {
     protected $client;
     protected $youtube;
@@ -53,7 +53,6 @@ public function fetchPlaylistThumbnail()
     ]);
 
     if (!empty($response['items'])) {
-        // Assuming you want the default thumbnail size, but you can choose from 'medium' or 'high' as well
         $thumbnailUrl = $response['items'][0]['snippet']['thumbnails']['high']['url'];
         return $thumbnailUrl;
     }

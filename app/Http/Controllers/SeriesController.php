@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Series;
-use App\Services\YouTubeService;
+use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +34,7 @@ class SeriesController extends Controller
             'playlist_url' => request('playlist_url'),
         ]);
 
-        $youtubeService = new YouTubeService( playListURL: request('playlist_url'));
+        $youtubeService = new YoutubeService( playListURL: request('playlist_url'));
         $episodes = $youtubeService->fetchAllVideosFromPlaylist();
         $series->episodes()->createMany($episodes);
         $series->title = $youtubeService->fetchPlaylistTitle();
