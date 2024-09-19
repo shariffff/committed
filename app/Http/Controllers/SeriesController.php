@@ -40,6 +40,7 @@ class SeriesController extends Controller
         $series->title = $youtubeService->fetchPlaylistTitle();
 
         $series->author = $youtubeService->fetchChannelName();
+        $series->thumbnail = $youtubeService->fetchPlaylistThumbnail();
 
         $series->save();
 

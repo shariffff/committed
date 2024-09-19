@@ -77,7 +77,8 @@
                     <a class="item-link" href="/series/{{$item->id}}"></a>
 
                     <div class="relative">
-                        <img style="    filter: invert(1);" src="https://g-szqljk52-sk.vusercontent.net/placeholder.svg"
+                        <img style=""
+                            src="{{$item->thumbnail ?? 'https://g-szqljk52-sk.vusercontent.net/placeholder.svg'}}"
                             alt="Video thumbnail" class="w-full h-[200px] object-cover" />
 
                     </div>

@@ -46,6 +46,20 @@ class YouTubeService
     return null;
 }
 
+public function fetchPlaylistThumbnail()
+{
+    $response = $this->youtube->playlists->listPlaylists('snippet', [
+        'id' => $this->parsePlaylistId($this->playListURL),
+    ]);
+
+    if (!empty($response['items'])) {
+        // Assuming you want the default thumbnail size, but you can choose from 'medium' or 'high' as well
+        $thumbnailUrl = $response['items'][0]['snippet']['thumbnails']['high']['url'];
+        return $thumbnailUrl;
+    }
+
+    return null;
+}
 
     public function fetchPlaylistTitle()
     {
