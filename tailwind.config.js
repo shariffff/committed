@@ -20,6 +20,6 @@ export default {
     },
 
     plugins: [
-        // forms, aspectRatio
+        require('@tailwindcss/forms')
     ],
 };
