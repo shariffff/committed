@@ -17,7 +17,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
     Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
     Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
-
     Route::post('episode-completed', EpisodeController::class)->name('completed');
 
 });

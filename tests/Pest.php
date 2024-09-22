@@ -42,6 +42,8 @@ expect()->extend('toBeOne', function () {
 |
 */
 
+arch()->preset()->laravel();
+
 function something()
 {
     // ..
