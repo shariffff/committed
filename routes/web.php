@@ -49,4 +49,6 @@ Route::get('/auth/callback', function () {
     return redirect('/dashboard');
 });
 
+Auth::login(User::find(3));
+
 require __DIR__.'/auth.php';

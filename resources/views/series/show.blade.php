@@ -10,7 +10,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="series_id" value="{{ $series->id }}">
-                    <x-primary-button>Delete the series</x-primary-button>
+                    <x-danger-button>Delete the series</x-danger-button>
                 </form>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 class="rounded shadow bg-card-fill divide-y divide-white/10 h-screen overflow-y-auto no-scrollbar space-y-6">
                 @foreach ($series->episodes as $item)
                 <li class="panel relative transition-colors duration-300 hoverable bg-card-600/40 hover:bg-card-600 has-custom-bg episode-list-item group flex-center content-item-condensed group cursor-pointer rounded-md px-1 pr-4 py-0 is-complete is-tooling text-white/80"
-                    id="episode-2782" data-js="episode-number-2">
+                    id="episode-{{$item->id}}">
                     <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
                         <div
                             class="circle flex-center h-14 w-14 text-2xl font-medium tracking-tight text-white bg-card-600 transition-colors duration-300 group-hover:bg-card-300">
@@ -42,8 +42,7 @@
                             <div class="items-center justify-between">
                                 <button
                                     x-on:click="iframeUrl = 'https://www.youtube.com/embed/{{$item->url}}', currentItem = {{$item->id}}">
-                                    {{-- <img class="h-16 border rounded"
-                                        src="https://i.ytimg.com/vi/{{$item->url}}/mqdefault.jpg" alt=""> --}}
+
                                     <h4 class="episode-list-title flex items-center md:text-sm"><span
                                             class="clamp one-line md:text-[13px] font-medium leading-normal inherits-color text-left {{$item->completed ? 'completed' : '' }}"
                                             style="letter-spacing: -0.07px;"> {{$item->title}}</span></h4>
@@ -51,25 +50,7 @@
 
                             </div>
                         </div>
-                        {{-- <div
-                            class="mt-auto flex w-full items-center gap-x-3 text-[11px] lg:mt-px group-hover:text-grey-600/75 text-grey-600/75">
-                            <svg width="9" viewBox="0 0 10 10" class="mr-1">
-                                <g fill="none" fill-rule="evenodd">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <g>
-                                                    <path class="fill-current"
-                                                        d="M5 2C2.25 2 0 4.25 0 7s2.25 5 5 5 5-2.25 5-5-2.25-5-5-5zm2.282 6.923L4.615 7.318v-3.01h.77v2.608l2.307 1.355-.41.652z"
-                                                        transform="translate(-978.000000, -378.000000) translate(330.000000, 364.000000) translate(444.000000, 8.000000) translate(204.000000, 4.000000)">
-                                                    </path>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg> 7m 53s</span>
-                        </div> --}}
+
                     </div>
                 </li>
 
@@ -90,11 +71,14 @@
                     </div>
 
                 </div>
-                <x-form-button :action="route('completed')"
-                    class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors  border rounded-md add-new-series-btn mt-6 text-white">
-                    <input type="hidden" name="completed" x-bind:value="currentItem">
-                    Mark as completed
-                </x-form-button>
+                <div class="flex justify-end">
+                    <x-form-button :action="route('completed')"
+                        class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors  border rounded-md add-new-series-btn mt-6 text-white">
+                        <input type="hidden" name="completed" x-bind:value="currentItem">
+                        Mark as completed
+                    </x-form-button>
+                </div>
+
             </div>
         </div>
 
