@@ -12,6 +12,7 @@ class EpisodeController extends Controller
         $episode = Episode::find(request('completed'));
         $episode->completed = true;
         $episode->save();
-        return back();
+        $previousUrl = strtok(url()->previous(), '?');
+        return redirect($previousUrl . '?' . http_build_query(['playing' => $episode->id]));
     }
 }

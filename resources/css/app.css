@@ -38,7 +38,9 @@ body {
     outline-offset: 2px;
 }
 .completed {
-    opacity: 0.4;
+    opacity: 0.2;
+}
+.completed span {
     text-decoration: line-through;
 }
 

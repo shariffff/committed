@@ -29,7 +29,7 @@
             <ul role="list"
                 class="rounded shadow bg-card-fill divide-y divide-white/10 h-screen overflow-y-auto no-scrollbar space-y-6">
                 @foreach ($series->episodes as $item)
-                <li class="panel relative transition-colors duration-300 hoverable bg-card-600/40 hover:bg-card-600 has-custom-bg episode-list-item group flex-center content-item-condensed group cursor-pointer rounded-md px-1 pr-4 py-0 is-complete is-tooling text-white/80"
+                <li class="panel relative transition-colors duration-300 hoverable bg-card-600/40 hover:bg-card-600 has-custom-bg episode-list-item group flex-center content-item-condensed group cursor-pointer rounded-md px-1 pr-4 py-0 text-white/80 {{$item->completed ? 'completed' : '' }}"
                     id="episode-{{$item->id}}">
                     <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
                         <div
@@ -44,7 +44,7 @@
                                     x-on:click="iframeUrl = 'https://www.youtube.com/embed/{{$item->url}}', currentItem = {{$item->id}}">
 
                                     <h4 class="episode-list-title flex items-center md:text-sm"><span
-                                            class="clamp one-line md:text-[13px] font-medium leading-normal inherits-color text-left {{$item->completed ? 'completed' : '' }}"
+                                            class="clamp one-line md:text-[13px] font-medium leading-normal inherits-color text-left"
                                             style="letter-spacing: -0.07px;"> {{$item->title}}</span></h4>
                                 </button>
 
@@ -84,5 +84,12 @@
 
 
     </div>
+    <script>
+        const playing = document.getElementById('episode-{{ request()->get('playing') }}')
+        if (playing) {
+            playing.scrollIntoView({behavior: 'smooth'});
+        }
+
+    </script>
 
 </x-app-layout>
