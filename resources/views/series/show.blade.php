@@ -20,12 +20,12 @@
     <div class="py-4 container mx-auto">
         @php
 
-        $first_ep = $series->episodes[0] ?? [];
-        $first_ep_url = $first_ep['url'] ?? '';
-        $first_ep_id = $first_ep['id'] ?? '';
+        $current_item = $last_updated ?? $series->episodes[0];
+        $current_item_url = $current_item['url'] ?? '';
+        $current_item_id = $current_item['id'] ?? '';
         @endphp
         <div class="grid grid-cols-4 gap-4"
-            x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{ $first_ep_url }}', currentItem: '{{ $first_ep_id }}' }">
+            x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{ $current_item_url }}', currentItem: '{{ $current_item_id }}' }">
             <ul role="list"
                 class="rounded shadow bg-card-fill divide-y divide-white/10 h-screen overflow-y-auto no-scrollbar space-y-6">
                 @foreach ($series->episodes as $item)
@@ -85,9 +85,10 @@
 
     </div>
     <script>
-        const playing = document.getElementById('episode-{{ request()->get('playing') }}')
+        const playing = document.getElementById('episode-{{ $current_item_id }}')
         if (playing) {
-            playing.scrollIntoView({behavior: 'smooth'});
+            playing.scrollTop -= 170;
+            playing.scrollIntoView({behavior: 'smooth', block: 'center'});
         }
 
     </script>

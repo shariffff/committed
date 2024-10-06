@@ -10,23 +10,28 @@ use Illuminate\Support\Facades\Gate;
 
 class SeriesController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('series.index', [
             'series' => Series::where('user_id', auth()->id())
-                        ->take(10)
-                        ->get()
+                ->take(10)
+                ->get()
         ]);
     }
 
-    public function show(Series $series){
+    public function show(Series $series)
+    {
         Gate::authorize('view', $series);
+        $lastUpdatedEpisode = $series->episodes()->orderBy('updated_at', 'desc')->first();
 
         return view('series.show', [
-            'series' => $series->load('episodes')
+            'series' => $series->load('episodes'),
+            'last_updated' => $lastUpdatedEpisode,
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
             'playlist_url' => 'required',
@@ -39,7 +44,7 @@ class SeriesController extends Controller
             'playlist_url' => request('playlist_url'),
         ]);
 
-        $youtubeService = new YoutubeService( playListURL: request('playlist_url'));
+        $youtubeService = new YoutubeService(playListURL: request('playlist_url'));
         $episodes = $youtubeService->fetchAllVideosFromPlaylist();
         $series->episodes()->createMany($episodes);
         $series->title = $youtubeService->fetchPlaylistTitle();
@@ -52,7 +57,8 @@ class SeriesController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
 
         $request->validate([
             'series_id' => 'required'
