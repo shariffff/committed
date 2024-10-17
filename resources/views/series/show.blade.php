@@ -26,25 +26,24 @@
         @endphp
         <div class="grid grid-cols-4 gap-4"
             x-data="{ iframeUrl: 'https://www.youtube.com/embed/{{ $current_item_url }}', currentItem: '{{ $current_item_id }}' }">
-            <ul role="list"
-                class="rounded shadow bg-card-fill divide-y divide-white/10 h-screen overflow-y-auto no-scrollbar space-y-6">
+            <ul role="list" class="bg-card-fill h-screen no-scrollbar overflow-y-auto rounded shadow px-3 ">
                 @foreach ($series->episodes as $item)
-                <li class="panel relative transition-colors duration-300 hoverable bg-card-600/40 hover:bg-card-600 has-custom-bg episode-list-item group flex-center content-item-condensed group cursor-pointer rounded-md px-1 pr-4 py-0 text-white/80 {{$item->completed ? 'completed' : '' }}"
-                    id="episode-{{$item->id}}">
+                <li style="background: #1e2430"
+                    class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-3 pr-4 px-1 py-0 radius:medium relative rounded-md text-white/80 transition-colors {{$item->completed ? 'completed' : '' }}"
+                    id="episode-{{$item->id}}"
+                    x-on:click="iframeUrl = 'https://www.youtube.com/embed/{{$item->url}}', currentItem = {{$item->id}}">
                     <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
-                        <div
-                            class="circle flex-center h-14 w-14 text-2xl font-medium tracking-tight text-white bg-card-600 transition-colors duration-300 group-hover:bg-card-300">
+                        <div class="circle text-2xl text-white tracking-tight w-14">
                             <span class="font-light">{{$loop->iteration}}</span>
                         </div>
                     </div>
                     <div class="episode-list-details flex flex-1">
                         <div>
                             <div class="items-center justify-between">
-                                <button
-                                    x-on:click="iframeUrl = 'https://www.youtube.com/embed/{{$item->url}}', currentItem = {{$item->id}}">
+                                <button>
 
                                     <h4 class="episode-list-title flex items-center md:text-sm"><span
-                                            class="clamp one-line md:text-[13px] font-medium leading-normal inherits-color text-left"
+                                            class="clamp md:text-[13px] font-medium leading-normal inherits-color text-left"
                                             style="letter-spacing: -0.07px;"> {{$item->title}}</span></h4>
                                 </button>
 
@@ -75,7 +74,7 @@
                     <x-form-button :action="route('completed')"
                         class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors  border rounded-md add-new-series-btn mt-6 text-white">
                         <input type="hidden" name="completed" x-bind:value="currentItem">
-                        Mark as completed
+                        Mark/Unmark as completed
                     </x-form-button>
                 </div>
 
@@ -84,6 +83,11 @@
 
 
     </div>
+    <style>
+        #episode-@php echo $current_item_id @endphp +li {
+            border: 2px solid pink;
+        }
+    </style>
     <script>
         const playing = document.getElementById('episode-{{ $current_item_id }}')
         if (playing) {
