@@ -2,7 +2,8 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl leading-tight text-white">
-                {{ $series->title }} {{$series->author ? 'by ' . $series->author : ''}}
+                {{ $series->title }} {!! $series->author ? " <span class='text-white/50'> by $series->author </span>" :
+                '' !!}
             </h2>
 
             <div>

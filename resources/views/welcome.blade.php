@@ -110,7 +110,8 @@
                                 class="container max-w-sm py-32 mx-auto mt-px text-left sm:max-w-md md:max-w-lg sm:px-4 md:max-w-none md:text-center">
                                 <h1
                                     class="text-3xl font-bold leading-10 tracking-tight text-left text-gray-900 md:text-center sm:text-4xl md:text-7xl lg:text-8xl">
-                                    Be committed to <br class="hidden sm:block"> your learning</h1>
+                                    Be committed to <br class="hidden sm:block"> your <span
+                                        style="color: rgb(255, 0, 51)">youtube</span> learning</h1>
                                 <div class="mx-auto mt-5 text-gray-400 md:mt-8 md:max-w-lg md:text-center md:text-xl">
                                     Simplifying the way you watch youtube playlist
                                     more!</div>

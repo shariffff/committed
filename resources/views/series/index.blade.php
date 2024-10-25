@@ -25,7 +25,7 @@
                                         x-transition:leave="ease-in duration-200"
                                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        class="relative w-full py-6 bg-black px-7 sm:max-w-lg sm:rounded-lg text-white">
+                                        class="relative w-full py-6 bg-white px-7 sm:max-w-lg sm:rounded-lg text-black">
                                         <div class="flex items-center justify-between pb-2">
                                             <h3 class="text-lg font-semibold">Add a Youtube Playlist</h3>
                                             <button @click="modalOpen=false"
@@ -81,9 +81,7 @@
                         </h3>
                         <p class="text-sm text-gray-500">{{$item->author ?? ''}}</p>
                         <div class="text-sm text-gray-500 mt-1">
-                            {{-- <span>12 vidoes</span> --}}
-                            {{-- <span class="mx-1">•</span> --}}
-                            {{-- <span>Progress 10%</span> --}}
+                            <span>{{count(is_countable($item->episodes) ? $item->episodes : [])}} videos</span>
                         </div>
                     </div>
                 </div>
