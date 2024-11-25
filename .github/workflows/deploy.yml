@@ -18,4 +18,4 @@ jobs:
           if_key_exists: replace # replace / ignore / fail; optional (defaults to fail)
 
       - name: Deploy with rsync
-        run: rsync -az --exclude wp-content/object-cache.php --exclude wp-content/mu-plugins ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:site/public_html/
+        run: rsync -az ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/vito/committed.sharifff.com
