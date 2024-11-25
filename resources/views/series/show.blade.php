@@ -72,9 +72,9 @@
 
                 </div>
                 <div class="flex justify-end">
-                    <x-form-button :action="route('completed')"
+                    <x-form-button x-bind:action="/episode-completed/currentItem"
                         class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors  border rounded-md add-new-series-btn mt-6 text-white">
-                        <input type="hidden" name="completed" x-bind:value="currentItem">
+                        {{-- <input type="hidden" name="completed" x-bind:value="currentItem"> --}}
                         Mark/Unmark as completed
                     </x-form-button>
                 </div>
@@ -84,11 +84,6 @@
 
 
     </div>
-    <style>
-        #episode-@php echo $current_item_id @endphp +li {
-            border: 2px solid pink;
-        }
-    </style>
     <script>
         const playing = document.getElementById('episode-{{ $current_item_id }}')
         if (playing) {

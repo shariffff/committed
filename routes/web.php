@@ -3,13 +3,12 @@
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
-use App\Models\Episode;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::view('/', 'welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [SeriesController::class, 'index'])->name('dashboard');
@@ -17,8 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
     Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
     Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
-    Route::post('episode-completed', EpisodeController::class)->name('completed');
-
+    Route::post('episode-completed/{episode}', EpisodeController::class)->name('completed');
 });
 
 
@@ -49,6 +47,4 @@ Route::get('/auth/callback', function () {
     return redirect('/dashboard');
 });
 
-Auth::login(User::find(3));
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

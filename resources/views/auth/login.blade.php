@@ -44,7 +44,12 @@
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
-            <a href="{{route('login.github')}}">Use Github</a>
+
+
+        </div>
+        <div class="text-center p-4">
+            <a class="mt-4 font-bold underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                href="{{route('login.github')}}">Login using GitHub</a>
 
         </div>
     </form>

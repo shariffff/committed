@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Episode;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EpisodeController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Episode $episode)
     {
-        // Todo: set Gate
-        $episode = Episode::find(request('completed'));
+        Gate::authorize('update', $episode);
+        $episode = Episode::find($episode)->first();
         $episode->completed = ! $episode->completed;
         $episode->save();
         return back();
