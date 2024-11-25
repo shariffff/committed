@@ -15,6 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/series', [SeriesController::class, 'index'])->name('series');
     Route::post('/series', [SeriesController::class, 'store'])->name('series.store');
     Route::get('/series/{series}', [SeriesController::class, 'show'])->name('series.show');
+    Route::get('/series/{series}/episode/{episode}', [SeriesController::class, 'showEpisode'])->name('series.showEpisode');
     Route::delete('/series', [SeriesController::class, 'destroy'])->name('series.destroy');
     Route::post('episode-completed/{episode}', EpisodeController::class)->name('completed');
 });

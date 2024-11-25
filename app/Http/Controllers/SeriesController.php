@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
 use App\Models\Series;
 use App\Services\YoutubeService;
 use Illuminate\Http\Request;
@@ -22,11 +23,19 @@ class SeriesController extends Controller
     public function show(Series $series)
     {
         Gate::authorize('view', $series);
-        $lastUpdatedEpisode = $series->episodes()->orderBy('updated_at', 'desc')->first();
+        $seriesWithEpisodes = $series->load('episodes');
+        return view('series.show', [
+            'series' => $seriesWithEpisodes,
+            'episode' => $seriesWithEpisodes->episodes->first()
+        ]);
+    }
 
+    public function showEpisode(Series $series, Episode $episode)
+    {
+        Gate::authorize('view', $series);
         return view('series.show', [
             'series' => $series->load('episodes'),
-            'last_updated' => $lastUpdatedEpisode,
+            'episode' => $episode,
         ]);
     }
 
