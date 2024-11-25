@@ -18,4 +18,4 @@ jobs:
           if_key_exists: replace # replace / ignore / fail; optional (defaults to fail)
 
       - name: Deploy with rsync
-        run: rsync -az ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/vito/committed.sharifff.com
+        run: rsync -az ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:committed.sharifff.com
