@@ -19,14 +19,14 @@
 
     <div class="py-4 container mx-auto">
         <div class="grid grid-cols-4 gap-4">
-            <ul role="list" class="bg-card-fill h-screen no-scrollbar overflow-y-auto rounded shadow px-3 ">
+            <ul role="list" class="bg-card-fill h-screen no-scrollbar overflow-y-auto rounded shadow p-3 ">
                 @foreach ($series->episodes as $item)
                 <li style="background: #1e2430"
-                    class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-3 pr-4 px-1 py-0 radius:medium relative rounded-md text-white/80 transition-colors {{$item->completed ? 'completed' : '' }}"
+                    class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-3 pr-4 px-1 py-0 radius:medium relative rounded-md text-white/80 transition-colors {{$item->id === $episode->id ? 'currently-playing' : ''}} {{$item->completed ? 'completed' : '' }}"
                     id="episode-{{$item->id}}">
 
                     <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
-                        <div class="circle text-2xl text-white tracking-tight w-14">
+                        <div class="bg-card-fill circle text-2xl text-white tracking-tight w-14">
                             <span class="font-light">{{$loop->iteration}}</span>
                         </div>
                     </div>

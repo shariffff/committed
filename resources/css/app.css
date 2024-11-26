@@ -88,3 +88,6 @@ body {
     overflow: hidden;
     -webkit-line-clamp: 1;
 }
+.currently-playing {
+    @apply border border-gray-200 border-solid shadow-2xl;
+}
