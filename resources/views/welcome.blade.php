@@ -9,7 +9,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <section class="p-4">
+    <section class="p-4 py-16">
         <div class="pt-16 pb-24 px-5 xs:px-8 xl:px-12 bg-card-fill rounded-3xl">
             <div class="container mx-auto px-4">
                 <div class="flex mb-4 items-center justify-between">
