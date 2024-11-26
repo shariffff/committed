@@ -24,24 +24,24 @@
                 <li style="background: #1e2430"
                     class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-3 pr-4 px-1 py-0 radius:medium relative rounded-md text-white/80 transition-colors {{$item->id === $episode->id ? 'currently-playing' : ''}} {{$item->completed ? 'completed' : '' }}"
                     id="episode-{{$item->id}}">
+                    <a href="{{route('series.showEpisode', [$series->id, $item->id])}}" class="flex w-full">
 
-                    <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
-                        <div class="bg-card-fill circle text-2xl text-white tracking-tight w-14">
-                            <span class="font-light">{{$loop->iteration}}</span>
+                        <div class="flex-center relative mr-2 scale-[.67] pr-0 font-bold">
+                            <div class="bg-card-fill circle text-2xl text-white tracking-tight w-14">
+                                <span class="font-light">{{$loop->iteration}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="episode-list-details flex flex-1">
-                        <div>
-                            <div class="items-center justify-between">
-                                <a href="{{route('series.showEpisode', [$series->id, $item->id])}}">
+                        <div class="episode-list-details flex flex-1">
+                            <div>
+                                <div class="items-center justify-between">
                                     <h4 class="episode-list-title flex items-center md:text-sm"><span
                                             class="clamp md:text-[13px] font-medium leading-normal inherits-color text-left"
                                             style="letter-spacing: -0.07px;"> {{$item->title}}</span></h4>
-                                </a>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
+                    </a>
                 </li>
                 @endforeach
             </ul>

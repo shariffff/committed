@@ -10,7 +10,7 @@
 
 <body class="font-sans antialiased">
     <section class="p-4">
-        <div class="pt-16 pb-24 px-5 xs:px-8 xl:px-12 bg-teal-900 rounded-3xl">
+        <div class="pt-16 pb-24 px-5 xs:px-8 xl:px-12 bg-card-fill rounded-3xl">
             <div class="container mx-auto px-4">
                 <div class="flex mb-4 items-center justify-between">
                     <div class="flex items-center">
@@ -58,11 +58,14 @@
                                     <circle cx="24" cy="32" r="4" fill="#022C22"></circle>
                                     <circle cx="32" cy="16" r="4" fill="#022C22"></circle>
                                 </svg>
-                                <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-2">EV
-                                    charging </h5>
-                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-6">EVs use electricity
-                                    as a power source, which can be generated from renewable energy sources. Our
-                                    solutions help reducing greenhouse gas emissions in the transportation sector.</p>
+                                <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-2">
+                                    Sign Up in Seconds
+                                </h5>
+                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-6">Get started by
+                                    creating your account the traditional way, or save time by signing in with your
+                                    GitHub credentials. It's quick, easy, and secure.
+
+                                </p>
 
                             </div>
                         </div>
@@ -89,10 +92,12 @@
                                         transform="rotate(-45 11.9792 13.3936)" fill="#022C22"></rect>
                                 </svg>
                                 <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-3">
-                                    Solar Energy</h5>
-                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-7">Solar panels convert
-                                    sunlight into electricity. Photovoltaic (PV) cells on these panels capture the
-                                    energy from the sun and convert it into electrical power.</p>
+                                    Build Your Playlist</h5>
+                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-7">Simply grab the URL
+                                    of your YouTube playlist and paste it into your dashboard. Organize your learning
+                                    resources in one convenient location.
+
+                                </p>
 
                             </div>
                         </div>
@@ -128,11 +133,13 @@
                                         d="M24 17C20.134 17 17 20.134 17 24C17 24.5523 16.5523 25 16 25C15.4477 25 15 24.5523 15 24C15 19.0294 19.0294 15 24 15C24.5523 15 25 15.4477 25 16C25 16.5523 24.5523 17 24 17Z"
                                         fill="#022C22"></path>
                                 </svg>
-                                <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-4">Wind
-                                    Energy</h5>
-                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-8">Wind turbines
-                                    harness the kinetic energy of the wind to generate electricity. Wind farms with
-                                    multiple turbines are commonly used to produce large amounts of clean energy.</p>
+                                <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-4">
+                                    Track Your Progress
+                                </h5>
+                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-8">Effortlessly mark
+                                    videos as watched. Keep a clear record of your learning journey and pick up exactly
+                                    where you left off.
+                                </p>
 
                             </div>
                         </div>
@@ -148,10 +155,12 @@
                                         fill="#022C22"></path>
                                 </svg>
                                 <h5 class="text-2xl font-medium text-white mt-6 mb-3" data-config-id="txt-5b8a8b-5">
-                                    Hydropower</h5>
-                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-9">This technology uses
-                                    the energy from flowing water, such as rivers and dams, to turn turbines and
-                                    generate electricity. It's one of the oldest forms of renewable energy.</p>
+                                    Streamline Your Learning
+                                </h5>
+                                <p class="text-white opacity-80 mb-6" data-config-id="txt-5b8a8b-9">Say goodbye to
+                                    endless scrolling through your YouTube history. Stay focused, stay productive, and
+                                    keep learning with ease.
+                                </p>
 
                             </div>
                         </div>
