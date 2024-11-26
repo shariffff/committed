@@ -43,9 +43,14 @@ class SeriesController extends Controller
     {
 
         $request->validate([
-            'playlist_url' => 'required',
+            'playlist_url' => ['required', 'url', function ($attribute, $value, $fail) {
+                // Regular expression to match YouTube playlist URLs
+                $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/playlist\?list=)[^\s&]+$/';
+                if (!preg_match($pattern, $value)) {
+                    $fail('Please provide a valid youtube playlist URL.');
+                }
+            }],
         ]);
-        //Todo: Validate the playlist_url here
 
         $series = Series::create([
             'user_id' => auth()->id(),
