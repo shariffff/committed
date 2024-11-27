@@ -9,7 +9,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <section class="p-4 py-16">
+    <section class="p-4">
         <div class="pt-16 pb-24 px-5 xs:px-8 xl:px-12 bg-card-fill rounded-3xl">
             <div class="container mx-auto px-4">
                 <div class="flex mb-4 items-center justify-between">
@@ -46,6 +46,12 @@
                 <div class="border-t border-white border-opacity-25 pt-14">
                     <h1 class="font-heading text-4xl sm:text-6xl text-white mb-24" data-config-id="txt-5b8a8b-1">
                         Log Your YouTube Learning Journey</h1>
+
+                    <iframe class="aspect-video w-full mx-auto mb-16 border rounded border-black"
+                        style="max-width: 600px" src="https://www.youtube.com/embed/o_LdYjHZikA?si=QVrGNW1wau-h3q0N"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     <div class="flex flex-wrap -mx-4">
                         <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-12 lg:mb-0">
                             <div class="flex flex-col h-full">
@@ -169,7 +175,13 @@
             </div>
         </div>
     </section>
-
+    <footer class="leading-7 p-4 text-center text-sm text-gray-400">
+        Made with ❤️ by <a class="text-lime-900 underline" href="https://sharifff.com" target="_blank">Sharif Mohammad
+            Eunus</a>
+        <br>
+        Source Code <a class="text-lime-900 underline" href="https://github.com/shariffff/committed/"
+            target="_blank">@github</a>
+    </footer>
 </body>
 
 </html>
