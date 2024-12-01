@@ -10,7 +10,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="series_id" value="{{ $series->id }}">
-                    <x-danger-button>Delete the series</x-danger-button>
+                    <x-secondary-button>Delete the series</x-secondary-button>
                 </form>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <ul role="list" class="bg-card-fill h-screen no-scrollbar overflow-y-auto rounded shadow p-3 ">
                 @foreach ($series->episodes as $item)
                 <li style="background: #1e2430"
-                    class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-3 pr-4 px-1 py-0 radius:medium relative rounded-md text-white/80 transition-colors {{$item->id === $episode->id ? 'currently-playing' : ''}} {{$item->completed ? 'completed' : '' }}"
+                    class="bg-card-fill cursor-pointer duration-300 flex-center group hoverable mb-6 pr-4 px-4 py-4 radius:medium relative rounded-md text-white/80 transition-colors {{$item->id === $episode->id ? 'currently-playing' : ''}} {{$item->completed ? 'completed' : '' }}"
                     id="episode-{{$item->id}}">
                     <a href="{{route('series.showEpisode', [$series->id, $item->id])}}" class="flex w-full">
 
@@ -35,8 +35,7 @@
                             <div>
                                 <div class="items-center justify-between">
                                     <h4 class="episode-list-title flex items-center md:text-sm"><span
-                                            class="clamp md:text-[13px] font-medium leading-normal inherits-color text-left"
-                                            style="letter-spacing: -0.07px;"> {{$item->title}}</span></h4>
+                                            class="leading-loose text-left" style=""> {{$item->title}}</span></h4>
                                 </div>
                             </div>
 
@@ -46,8 +45,7 @@
                 @endforeach
             </ul>
             <div class="col-span-3 ">
-                <div class="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25 "
-                    style="margin-right: 0px;">
+                <div class="not-prose relative rounded-xl overflow-hidden bg-card-fill p-2" style="margin-right: 0px;">
 
                     <div class="relative overflow-auto"><iframe class="w-full aspect-video rounded-lg shadow-lg"
                             src="https://www.youtube.com/embed/{{$episode->url}}" frameborder="0"
