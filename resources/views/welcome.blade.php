@@ -44,14 +44,12 @@
                 </div>
 
                 <div class="border-t border-white border-opacity-25 pt-14">
-                    <h1 class="font-heading text-4xl sm:text-6xl text-white mb-24" data-config-id="txt-5b8a8b-1">
+                    <h1 class="font-heading text-4xl sm:text-6xl text-white" data-config-id="txt-5b8a8b-1">
                         Log Your YouTube Learning Journey</h1>
 
-                    <iframe class="aspect-video w-full mx-auto mb-16 border rounded border-black"
-                        style="max-width: 600px" src="https://www.youtube.com/embed/o_LdYjHZikA?si=QVrGNW1wau-h3q0N"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="not-prose relative rounded-xl overflow-hidden p-2 my-16">
+                        <img src="/screenshot.png" alt="App Screenshot">
+                    </div>
                     <div class="flex flex-wrap -mx-4">
                         <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-12 lg:mb-0">
                             <div class="flex flex-col h-full">
