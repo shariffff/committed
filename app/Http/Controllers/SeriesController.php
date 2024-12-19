@@ -45,7 +45,7 @@ class SeriesController extends Controller
         $request->validate([
             'playlist_url' => ['required', 'url', function ($attribute, $value, $fail) {
                 // Regular expression to match YouTube playlist URLs
-                $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/playlist\?list=)[^\s&]+$/';
+                $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/(playlist\?list=|watch\?v=[^\s&]+&list=))[^\s&]+$/';
                 if (!preg_match($pattern, $value)) {
                     $fail('Please provide a valid youtube playlist URL.');
                 }
@@ -71,14 +71,8 @@ class SeriesController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, Series $series)
     {
-
-        $request->validate([
-            'series_id' => 'required'
-        ]);
-        $series = Series::findOrFail($request->series_id);
-
         Gate::authorize('delete', $series);
 
         $series->delete();

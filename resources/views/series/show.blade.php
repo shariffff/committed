@@ -6,11 +6,10 @@
                 '' !!}
             </h2>
             <div>
-                <form method="POST" action="{{route('series.destroy')}}">
+                <form method="POST" action="{{route('series.destroy', $series->id)}}">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="series_id" value="{{ $series->id }}">
-                    <x-secondary-button>Delete the series</x-secondary-button>
+                    <x-secondary-button type="submit">Delete the series</x-secondary-button>
                 </form>
             </div>
         </div>
